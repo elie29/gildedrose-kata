@@ -4,7 +4,7 @@ class GildedRose {
    public static final String AGED_BRIE = "Aged Brie";
    public static final String ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
    public static final String RAGNAROS = "Sulfuras, Hand of Ragnaros";
-   
+
    Item[] items;
 
    public GildedRose(Item[] items) {
@@ -13,14 +13,7 @@ class GildedRose {
 
    public void updateQuality() {
       for (Item item : items) {
-         if (!item.name.equals(AGED_BRIE)
-            && !item.name.equals(ETC_CONCERT)) {
-            if (item.quality > 0) {
-               if (!item.name.equals(RAGNAROS)) {
-                  item.quality = item.quality - 1;
-               }
-            }
-         } else {
+         if (item.name.equals(AGED_BRIE) || item.name.equals(ETC_CONCERT)) {
             if (item.quality < 50) {
                item.quality = item.quality + 1;
 
@@ -38,26 +31,35 @@ class GildedRose {
                   }
                }
             }
+         } else {
+            if (item.quality > 0) {
+               if (item.name.equals(RAGNAROS)) {
+               } else {
+                  item.quality = item.quality - 1;
+               }
+            }
          }
 
-         if (!item.name.equals(RAGNAROS)) {
+         if (item.name.equals(RAGNAROS)) {
+         } else {
             item.sellIn = item.sellIn - 1;
          }
 
          if (item.sellIn < 0) {
-            if (!item.name.equals(AGED_BRIE)) {
-               if (!item.name.equals(ETC_CONCERT)) {
-                  if (item.quality > 0) {
-                     if (!item.name.equals(RAGNAROS)) {
-                        item.quality = item.quality - 1;
-                     }
-                  }
-               } else {
-                  item.quality = 0;
-               }
-            } else {
+            if (item.name.equals(AGED_BRIE)) {
                if (item.quality < 50) {
                   item.quality = item.quality + 1;
+               }
+            } else {
+               if (item.name.equals(ETC_CONCERT)) {
+                  item.quality = 0;
+               } else {
+                  if (item.quality > 0) {
+                     if (item.name.equals(RAGNAROS)) {
+                        continue;
+                     }
+                     item.quality = item.quality - 1;
+                  }
                }
             }
          }
