@@ -13,7 +13,8 @@ class GildedRose {
 
    public void updateQuality() {
       for (Item item : items) {
-         if (item.name.equals(AGED_BRIE)) {
+         switch (item.name) {
+         case AGED_BRIE:
             if (item.quality < 50) {
                item.quality = item.quality + 1;
             }
@@ -23,7 +24,8 @@ class GildedRose {
                   item.quality = item.quality + 1;
                }
             }
-         } else if (item.name.equals(ETC_CONCERT)) {
+            break;
+         case ETC_CONCERT:
             if (item.quality < 50) {
                item.quality = item.quality + 1;
 
@@ -43,8 +45,10 @@ class GildedRose {
             if (item.sellIn < 0) {
                item.quality = 0;
             }
-         } else if (item.name.equals(RAGNAROS)) {
-         } else {
+            break;
+         case RAGNAROS:
+            break;
+         default:
             if (item.quality > 0) {
                item.quality = item.quality - 1;
             }
@@ -54,6 +58,7 @@ class GildedRose {
                   item.quality = item.quality - 1;
                }
             }
+            break;
          }
 
       }
