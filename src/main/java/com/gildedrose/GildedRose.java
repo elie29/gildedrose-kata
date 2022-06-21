@@ -17,6 +17,7 @@ class GildedRose {
             if (item.quality < 50) {
                item.quality = item.quality + 1;
             }
+            item.sellIn = item.sellIn - 1;
          } else if (item.name.equals(ETC_CONCERT)) {
             if (item.quality < 50) {
                item.quality = item.quality + 1;
@@ -33,17 +34,13 @@ class GildedRose {
                   }
                }
             }
+            item.sellIn = item.sellIn - 1;
+         } else if (item.name.equals(RAGNAROS)) {
+            // todo
          } else {
             if (item.quality > 0) {
-               if (item.name.equals(RAGNAROS)) {
-               } else {
-                  item.quality = item.quality - 1;
-               }
+               item.quality = item.quality - 1;
             }
-         }
-
-         if (item.name.equals(RAGNAROS)) {
-         } else {
             item.sellIn = item.sellIn - 1;
          }
 
