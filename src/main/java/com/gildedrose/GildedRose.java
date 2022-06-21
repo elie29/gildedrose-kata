@@ -18,6 +18,11 @@ class GildedRose {
                item.quality = item.quality + 1;
             }
             item.sellIn = item.sellIn - 1;
+            if (item.sellIn < 0) {
+               if (item.quality < 50) {
+                  item.quality = item.quality + 1;
+               }
+            }
          } else if (item.name.equals(ETC_CONCERT)) {
             if (item.quality < 50) {
                item.quality = item.quality + 1;
@@ -35,33 +40,22 @@ class GildedRose {
                }
             }
             item.sellIn = item.sellIn - 1;
+            if (item.sellIn < 0) {
+               item.quality = 0;
+            }
          } else if (item.name.equals(RAGNAROS)) {
-            // todo
          } else {
             if (item.quality > 0) {
                item.quality = item.quality - 1;
             }
             item.sellIn = item.sellIn - 1;
-         }
-
-         if (item.sellIn < 0) {
-            if (item.name.equals(AGED_BRIE)) {
-               if (item.quality < 50) {
-                  item.quality = item.quality + 1;
-               }
-            } else {
-               if (item.name.equals(ETC_CONCERT)) {
-                  item.quality = 0;
-               } else {
-                  if (item.quality > 0) {
-                     if (item.name.equals(RAGNAROS)) {
-                        continue;
-                     }
-                     item.quality = item.quality - 1;
-                  }
+            if (item.sellIn < 0) {
+               if (item.quality > 0) {
+                  item.quality = item.quality - 1;
                }
             }
          }
+
       }
    }
 }
