@@ -21,7 +21,7 @@ class GildedRoseTest {
    }
 
    private String doUpdate(String name, int sellIn, int quality) {
-      Item[] items = new Item[] { new Item(name, sellIn, quality) };
+      Item[] items = new Item[] { ItemFactory.of(name, sellIn, quality) };
       GildedRose app = new GildedRose(items);
       app.updateQuality();
 
